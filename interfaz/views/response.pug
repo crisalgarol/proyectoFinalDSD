@@ -1,0 +1,56 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title Encuentra palindromos
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,900|Source+Sans+Pro:400,500,600,700,800,900' rel='stylesheet')
+  link(rel='stylesheet' href='styles.min.css')
+  style.
+    .card.card-panel {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    }
+    .file-field.input-field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    h1{
+    color: white;
+    }
+    .card .container {
+    margin-top: 50px !important;
+    }
+    .input-field.nwords{
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    p.center-align.white-text {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Source Sans Pro";
+    }
+    ul.collection {
+    margin-top: 32px;
+    display: initial;
+    margin: auto;
+    }
+    .collection .collection-item{
+    padding: 12px 40px;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    }
+.gradient-back
+.container
+  h1.center-align #{listlen} Resultados
+  .row
+    p.center-align.white-text Se han encontrado #{listlen} palindromos.
+    p.center-align.white-text Tiempo de procesamiento: #{time} segundos.
+  .card.card-panel
+    ul.collection
+      each item in list
+        li.collection-item= item
+script(src='index.min.js')
