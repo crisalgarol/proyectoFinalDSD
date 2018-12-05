@@ -1,12 +1,30 @@
 // Copyright (c) 2015 Cesanta Software Limited // All rights reserved
 #include "mongoose.h"
+
 static const char *s_http_port = "8000";
 static struct mg_serve_http_opts s_http_server_opts;
-static void ev_handler(struct mg_connection *nc, int ev, void *p)
+struct mg_str cb(struct mg_connection *c, struct mg_str file_name)
+MG_ENABLE_HTTP_STREAMING_MULTIPART = true;
 {
-  if (ev == MG_EV_HTTP_REQUEST)
-  {
-    mg_serve_http(nc, (struct http_message *)p, s_http_server_opts);
+  // Return the same filename. Do not actually do this except in test!
+  // fname is user-controlled and needs to be sanitized.
+  return file_name;
+}
+
+static void ev_handler(struct mg_connection *nc, int ev, void *ev_data)
+{
+  switch (ev){
+    case MG_EV_HTTP_REQUEST:
+      mg_serve_http(nc, (struct http_message *)ev_data, s_http_server_opts);
+      break;
+    case MG_EV_HTTP_PART_BEGIN:
+    case MG_EV_HTTP_PART_DATA:
+    case MG_EV_HTTP_PART_END:
+      printf("subiendo archivo...");
+      mg_file_upload_handler(nc, ev, ev_data, cb);
+      break;
+    default:
+      break;
   }
 }
 int main(void)
@@ -22,7 +40,8 @@ int main(void)
     return 1;
   }
   // Set up HTTP server parameters 
-  mg_set_protocol_http_websocket(nc); s_http_server_opts.document_root = "."; // Serve current directory 
+  mg_set_protocol_http_websocket(nc); 
+  s_http_server_opts.document_root = "."; // Serve current directory 
   s_http_server_opts.enable_directory_listing = "yes";
   for (;;)
   {

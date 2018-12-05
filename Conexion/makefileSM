@@ -1,0 +1,14 @@
+server_master: servidor.cpp PaqueteDatagrama.o SocketDatagrama.o Solicitud.o
+	g++ server_master.cpp PaqueteDatagrama.o SocketDatagrama.o Solicitud.o -o server_master
+
+Solicitud.o: Solicitud.cpp Solicitud.h
+	g++ Solicitud.cpp -c
+
+SocketDatagrama.o: SocketDatagrama.cpp SocketDatagrama.h
+	g++ SocketDatagrama.cpp -c
+
+PaqueteDatagrama.o: PaqueteDatagrama.cpp PaqueteDatagrama.h
+	g++ PaqueteDatagrama.cpp -c
+
+clean:
+	rm *.o

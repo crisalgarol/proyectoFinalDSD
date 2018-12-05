@@ -11,6 +11,5 @@ int main(int argc, char** argv){
     int id = 1;
     char  * cadena = (char*)"1!anitalavalatina|holamundo|simonlamona|";
     char * respuesta = solicitud.doOperation(ip, pto, 1, cadena, id);
-
     return 0;
 }
