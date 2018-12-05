@@ -9,6 +9,7 @@ using namespace std;
 int main(int argc, char** argv){
   int pto = atoi(argv[1]);
   Respuesta r(pto);
+
   struct mensaje m = r.getRequest();
   /*int i = 0; //contador
   int j = 0; // contador de oracion
