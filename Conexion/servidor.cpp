@@ -48,6 +48,8 @@ int main(int argc, char** argv){
   cout << palindromos << endl;*/
 
   cout << m.arguments << endl;
+  r.sendReply(m.arguments, m.IP, m.puerto, 1);
+  //char*r, char*ipCliente, int puertoCliente, int requestId
   //Solicitud solicitud;
   /*char * ip = (char*)"10.100.74.35";
   int puerto = 1234;

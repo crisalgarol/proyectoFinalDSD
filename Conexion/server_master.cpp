@@ -33,10 +33,10 @@ int main(void) {
   info = (char*)malloc(4000);
   bzero(info, 4000);
   //while (1) {
-    /*recvfrom(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, &clilen);
+    recvfrom(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, &clilen);
     printf("\nCliente conectado desde %s:%d\n",inet_ntoa(msg_to_client_addr.sin_addr),ntohs(msg_to_client_addr.sin_port));
     printf("%s\n", info);
-    sendto(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, clilen);*/
+    sendto(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, clilen);
   //}
 
   vector<char*> ip;
@@ -53,11 +53,12 @@ int main(void) {
   vector<char*> resultados;
   char  * cadena = (char*)"1!anitalavalatina|holamundo|simonlamona|";
   for(int i = 0; i < ip.size(); i++){
-    char * r = solicitud.doOperation(ip[i], 9999, 1, cadena, 1);
+    char * r = solicitud.doOperation((char*)"10.100.74.35", 9999, 1, cadena, 1);
     resultados.push_back(r);
   }
   for(int j = 0; j < resultados.size(); j++){
     cout << resultados[j];
   }
+  return 0;
 
 }
