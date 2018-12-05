@@ -38,13 +38,26 @@ int main(void) {
     printf("%s\n", info);
     sendto(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, clilen);
   //}
+  char* nameFile;
+  nameFile = (char*)malloc(50*sizeof(char));
+  bzero(nameFile, 50);
+  string nword = "";
+  int k=0, positionComma = 0;
 
-  /*vector<char*> ip;
-  ip.push_back((char*)"10.100.68.88"); //daniel
-  ip.push_back((char*)"10.100.74.5");  //otrocarnal
-  ip.push_back((char*)"10.100.74.35"); //danyparc
-  ip.push_back((char*)"127.0.0.1");*/
+  while(info[k]!='\0'){
+    if(info[k]==','){
+      positionComma = k;
+    }if(positionComma != 0){
+      nameFile[(k-1)-positionComma] = info[k];
+    }else{
+      nword += info[k];
+    }
+    k++;
+  }
 
+  int npalabras = atoi(nword.c_str());
+
+  cout << "\nN: " << npalabras << "\nName File: " << nameFile;
 
   char** ip= (char**)malloc(4*sizeof(char*));
   for(int i = 0; i < 4; i++){
