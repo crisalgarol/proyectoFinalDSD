@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Encuentra palindromos</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,900|Source+Sans+Pro:400,500,600,700,800,900"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.min.css"></link>
+  <style>
+    .card.card-panel {
+      background: white;
+      max-width: 800px;
+      margin: auto;
+    }
+    .file-field.input-field{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    h1{
+      color: white;
+    }
+    .card .container {
+      margin-top: 50px !important;
+    }
+    .input-field.nwords{
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    p.center-align.white-text {
+        font-size: 18px;
+        font-weight: 600;
+        font-family: "Source Sans Pro";
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-back"></div>
+  <div class="container">
+    <h1 class="center-align">Encuentra palindromos</h1>
+    <div class="row">
+      <p class="center-align white-text">Busca palíndromos en un archivo de texto</p>
+      <p class="center-align white-text">Seleccione un archivo y el número máximo de palabras dentro del palíndromo.</p>
+    </div>
+    <div class="card card-panel">
+      <div class="container">
+        <div class="row center-align">
+          <form method="POST" action="/upload" enctype="multipart/form-data">
+            <div class="col s12 m8 offset-m2">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <button class="wg-btn">Subir Archivo (.txt)</button>
+                  <input type="file" name="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+              <div class="input-field nwords">
+                <input name="nwords" type="text">
+                <label for="nwords">Número de palabras</label>
+              </div>
+            </div>
+            <div class="col  s12 m8 offset-m2">  
+              <button type="submit" class="wg-btn big-btn">Buscar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.min.js"></script>
+</body>
+</html>

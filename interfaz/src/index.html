@@ -48,24 +48,26 @@
     <div class="card card-panel">
       <div class="container">
         <div class="row center-align">
-          <div class="col s12 m8 offset-m2">
-            <div class="file-field input-field">
-              <div class="btn">
-                <button class="wg-btn">Seleccionar Archivo (.txt)</button>
-                <input type="file">
+          <form method="POST" action="/upload" enctype="multipart/form-data">
+            <div class="col s12 m8 offset-m2">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <button class="wg-btn">Subir Archivo (.txt)</button>
+                  <input type="file" name="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
               </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+              <div class="input-field nwords">
+                <input name="nwords" type="text">
+                <label for="nwords">Número de palabras</label>
               </div>
             </div>
-            <div class="input-field nwords">
-              <input name="nwords" type="text">
-              <label for="nwords">Número de palabras</label>
+            <div class="col  s12 m8 offset-m2">  
+              <button type="submit" class="wg-btn big-btn">Buscar</button>
             </div>
-          </div>
-          <div class="col  s12 m8 offset-m2">  
-            <button class="wg-btn big-btn">Buscar</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
