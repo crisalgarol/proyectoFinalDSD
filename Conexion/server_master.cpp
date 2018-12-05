@@ -39,21 +39,31 @@ int main(void) {
     sendto(s, info, 4000, 0, (struct sockaddr *)&msg_to_client_addr, clilen);
   //}
 
-  vector<char*> ip;
+  /*vector<char*> ip;
   ip.push_back((char*)"10.100.68.88"); //daniel
   ip.push_back((char*)"10.100.74.5");  //otrocarnal
   ip.push_back((char*)"10.100.74.35"); //danyparc
-  ip.push_back((char*)"127.0.0.1");
+  ip.push_back((char*)"127.0.0.1");*/
 
-  for(int j = 0; j < ip.size(); j++){
+
+  char** ip= (char**)malloc(4*sizeof(char*));
+  for(int i = 0; i < 4; i++){
+    ip[i] = (char*)malloc((16)*sizeof(char));
+  }
+
+  ip[0] = (char*)"10.100.68.88";
+  ip[1] = (char*)"10.100.74.5";
+  ip[2] = (char*)"10.100.74.35";
+  ip[3] = (char*)"127.0.0.1";
+  for(int j = 0; j < 4; j++){
     cout << ip[j] << endl;
   }
 
   Solicitud solicitud;
   vector<char*> resultados;
   char  * cadena = (char*)"1!anitalavalatina|holamundo|simonlamona|";
-  for(int i = 0; i < ip.size(); i++){
-    char * r = solicitud.doOperation((char*)"10.100.74.35", 9999, 1, cadena, 1);
+  for(int i = 0; i < 4; i++){
+    char * r = solicitud.doOperation(ip[i], 9999, 1, cadena, 1);
     resultados.push_back(r);
   }
   for(int j = 0; j < resultados.size(); j++){
