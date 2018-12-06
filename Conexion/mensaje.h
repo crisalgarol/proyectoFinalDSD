@@ -1,4 +1,4 @@
-#define TAM_MAX_DATA 4000
+#define TAM_MAX_DATA 65535
 
 struct mensaje{
     int messageType; //0= Solicitud, 1 = Respuesta
