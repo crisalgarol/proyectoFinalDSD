@@ -9,7 +9,7 @@ http.Server(app).listen(3000); // make server listen on port 80
 app.use(upload()); // configure middleware
 app.use(express.static('src'));
 app.set('view engine', 'pug');
-const MasterPort = 7200, MasterAddress = '10.100.74.30';
+const MasterPort = 7200, MasterAddress = '10.100.74.35';
 
 console.log("Server Started at port 3000");
 
@@ -72,8 +72,14 @@ function sendUDP(fileName, nwords, resp) {
   });
   socket.on('message', (msg, rinfo) => {
     console.log(`socket got: ${msg} from ${rinfo.address}:${rinfo.port}`);
-    var list = msg.toString().split(',');
+    var list = msg.toString().split('|');
     var elapsedSeconds = parseHrtimeToSeconds(process.hrtime(startTime));
+    list.forEach(l=>{
+      parseSpecialChars(l);
+    });
+    for (i = 0; i < list.length; i++) {
+      list[i] = parseSpecialChars(list[i]);
+    }
     resp.render('response', { list: list, listlen: list.length, time: elapsedSeconds });
     socket.close()
   });
@@ -90,4 +96,17 @@ function sendUDP(fileName, nwords, resp) {
 function parseHrtimeToSeconds(hrtime) {
   var seconds = (hrtime[0] + (hrtime[1] / 1e9)).toFixed(3);
   return seconds;
+}
+
+function parseSpecialChars(str){
+  var diccionario = {
+    '#':'Á','$':'É','%':'Í','&':'Ó',
+    '(':'Ú',')':'á','=':'é','+':'í',
+    '[':'ó','*':'ú','}':'ñ','{':'Ñ'
+    };
+  for (k in diccionario) {
+    str = str.replace(k,diccionario[k])
+    // console.log(k + diccionario[k]);
+  }
+  return str;
 }
